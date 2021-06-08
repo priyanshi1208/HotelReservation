@@ -12,8 +12,8 @@ public class CrudHotel implements ICrudHotel {
     public ArrayList<Hotel> hotelList=new ArrayList<>();
 
     @Override
-    public void addHotelRegularCustomer(String hotelName, Integer rates) {
-        Hotel hotel=new Hotel(hotelName,rates);
+    public void addHotelForRegularCustomer(String hotelName, Integer WeekdaysRates,Integer WeekenedRates) {
+        Hotel hotel=new Hotel(hotelName,WeekdaysRates,WeekenedRates);
         hotelList.add(hotel);
     }
 

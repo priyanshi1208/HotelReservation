@@ -2,20 +2,29 @@ package com.magic.hotelreservation.entity;
 
 public class Hotel {
     private String hotelName;
-    private Integer rates;
+    private Integer WeekdaysRates;
+    private Integer WeekendRates;
 
-    public Hotel(String hotelName,Integer rates) {
+    public Hotel(String hotelName,Integer WeekdaysRates,Integer Weekendrates) {
         this.hotelName = hotelName;
-        this.rates=rates;
-
+        this.WeekdaysRates=WeekdaysRates;
+        this.WeekendRates=Weekendrates;
     }
 
-    public Integer getRates() {
-        return rates;
+    public Integer getWeekendRates() {
+        return WeekendRates;
     }
 
-    public void setRates(Integer rates) {
-        this.rates = rates;
+    public void setWeekendRates(Integer weekendRates) {
+        WeekendRates = weekendRates;
+    }
+
+    public Integer getWeekdaysRates() {
+        return WeekdaysRates;
+    }
+
+    public void setWeekDaysRates(Integer rates) {
+        this.WeekdaysRates = rates;
     }
 
     public String getHotelName() {
