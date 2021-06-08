@@ -25,4 +25,11 @@ public class HotelControlsTest {
         Optional<Integer> rates = Optional.ofNullable(hotelservice.hotelList.get(1).getRates());
         Assert.assertEquals(Optional.ofNullable(160),rates);
     }
+    @Test
+    public void Validate_the_cheapest_hotel_among_all_in_date_ranges() {
+        CrudHotel hotelservice=new CrudHotel();
+        hotelservice.addHotelRegularCustomer("Lakewood",110);
+        hotelservice.addHotelRegularCustomer("BridgeWood",160);
+        hotelservice.cheapestHotel("31/10/2020","01/11/2020");
+    }
 }
