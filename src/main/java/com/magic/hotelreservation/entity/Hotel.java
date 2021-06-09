@@ -1,14 +1,16 @@
 package com.magic.hotelreservation.entity;
 
+import java.lang.reflect.Method;
+
 public class Hotel {
     private String hotelName;
     private Integer WeekdaysRates;
     private Integer WeekendRates;
 
-    public Hotel(String hotelName,Integer WeekdaysRates,Integer Weekendrates) {
+    public Hotel(String hotelName, Integer WeekdaysRates,Integer WeekendRates) {
         this.hotelName = hotelName;
         this.WeekdaysRates=WeekdaysRates;
-        this.WeekendRates=Weekendrates;
+        this.WeekendRates=WeekendRates;
     }
 
     public Integer getWeekendRates() {
