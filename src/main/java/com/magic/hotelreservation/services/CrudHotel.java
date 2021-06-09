@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -21,8 +20,8 @@ public class CrudHotel implements ICrudHotel {
     Map<String, Integer> rateList = new HashMap<>();
 
     @Override
-    public void addHotelForRegularCustomer(String hotelName, Integer WeekdaysRates, Integer WeekenedRates) {
-        Hotel hotel = new Hotel(hotelName, WeekdaysRates, WeekenedRates);
+    public void addHotelForRegularCustomer(String hotelName, Integer WeekdaysRates, Integer WeekenedRates,Integer Ratings) {
+        Hotel hotel = new Hotel(hotelName, WeekdaysRates, WeekenedRates,Ratings);
         hotelList.add(hotel);
     }
 
@@ -54,9 +53,9 @@ public class CrudHotel implements ICrudHotel {
             });
         });
         cheapestRate = rateList.values().stream().sorted().collect(Collectors.toList()).get(0);
-        rateList.entrySet().forEach(f->{
-            if(f.getValue().equals(cheapestRate))
-            System.out.println(f.getKey()+" ");
+        rateList.forEach((key, value) -> {
+            if (value.equals(cheapestRate))
+                System.out.println(key + " ");
         });
         System.out.println(cheapestRate);
         return cheapestRate;
@@ -65,13 +64,5 @@ public class CrudHotel implements ICrudHotel {
     @Override
     public void viewHotelRegularCustomer() {
         hotelList.forEach(hotel -> System.out.println(hotel.getHotelName() + " " + hotel.getWeekdaysRates()));
-    }
-
-    public static void main(String[] args) {
-        CrudHotel h = new CrudHotel();
-        h.addHotelForRegularCustomer("abc", 90, 100);
-        h.addHotelForRegularCustomer("nbh", 95, 105);
-        h.addHotelForRegularCustomer("oiy", 70, 80);
-        System.out.println( h.cheapestHotelDateWise("01-04-2020", "04-04-2020"));
     }
 }

@@ -7,35 +7,16 @@ import org.junit.Test;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class HotelControlsTest {
-
     @Test
-    public void validate_addition_of_seperate_rates_for_weekend_and_weekdays() {
-        CrudHotel hotel=new CrudHotel();
-        hotel.addHotelForRegularCustomer("Lakewood",110,90);
-        hotel.addHotelForRegularCustomer("Bridgewood",150,50);
-        hotel.addHotelForRegularCustomer("Ridgewood",220,150);
-        Integer weekendRates = hotel.hotelList.get(2).getWeekendRates();
-        Assert.assertEquals(Optional.ofNullable(150),Optional.ofNullable(weekendRates));
-    }
-    @Test
-    public void validate_addition_of_seperate_rates_for_weekdays() {
-        CrudHotel hotel=new CrudHotel();
-        hotel.addHotelForRegularCustomer("Lakewood",110,90);
-        hotel.addHotelForRegularCustomer("Bridgewood",150,50);
-        hotel.addHotelForRegularCustomer("Ridgewood",220,150);
-        Integer weekendRates = hotel.hotelList.get(0).getWeekdaysRates();
-        Assert.assertEquals(Optional.ofNullable(110),Optional.ofNullable(weekendRates));
-    }
-
-    @Test
-    public void validate_cheapestrate_hotel_in_weekend() {
-        CrudHotel hotel=new CrudHotel();
-        hotel.addHotelForRegularCustomer("Lakewood",110,90);
-        hotel.addHotelForRegularCustomer("Bridgewood",150,50);
-        hotel.addHotelForRegularCustomer("Ridgewood",220,150);
-        Integer result=hotel.cheapestHotelDateWise("04-12-2020","16-12-2020");
-        Assert.assertEquals(Optional.ofNullable(1430),Optional.ofNullable(result));
+    public void validating_ratings_for_a_hotel() {
+        CrudHotel crudHotel = new CrudHotel();
+        crudHotel.addHotelForRegularCustomer("Lakewood", 110, 90, 3);
+        crudHotel.addHotelForRegularCustomer("Bridgewood", 80, 100, 4);
+        crudHotel.addHotelForRegularCustomer("Ridgewood", 80, 100, 5);
+        Integer ratings = crudHotel.hotelList.get(0).getRatings();
+        Assert.assertEquals(Optional.ofNullable(3), Optional.ofNullable(ratings));
     }
 }
