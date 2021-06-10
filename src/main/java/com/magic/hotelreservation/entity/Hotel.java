@@ -7,12 +7,22 @@ public class Hotel {
     private Integer WeekdaysRates;
     private Integer WeekendRates;
     private Integer ratings;
+    private CustomerType customerType;
 
-    public Hotel(String hotelName, Integer WeekdaysRates,Integer WeekendRates,Integer ratings) {
+    public Hotel(String hotelName, Integer WeekdaysRates,Integer WeekendRates,Integer ratings,CustomerType customerType) {
         this.hotelName = hotelName;
         this.WeekdaysRates=WeekdaysRates;
         this.WeekendRates=WeekendRates;
         this.ratings=ratings;
+        this.customerType=customerType;
+    }
+
+    public CustomerType getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(CustomerType customerType) {
+        this.customerType = customerType;
     }
 
     public Integer getRatings() {
