@@ -1,7 +1,4 @@
 package com.magic.hotelreservation.entity;
-
-import java.lang.reflect.Method;
-
 public class Hotel {
     private String hotelName;
     private Integer WeekdaysRates;

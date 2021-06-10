@@ -23,17 +23,16 @@ public class CrudHotel implements ICrudHotel {
         hotelList.add(hotel);
     }
 
-    public LocalDate DateFormatChecker(String date) {
+    private LocalDate DateFormatChecker(String date) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         try {
             return formatter.parse(date, LocalDate::from);
         } catch (DateTimeParseException e) {
-            e.printStackTrace();
+            throw new HotelCustomException(HotelCustomException.ExceptionType.INVALID_DATE_FORMAT);
         }
-        return null;
     }
-    public Rates checkRatings(Integer FinalRates,Integer ratings){
+    private Rates checkRatings(Integer FinalRates,Integer ratings){
         return new Rates(ratings,FinalRates);
 
     }
