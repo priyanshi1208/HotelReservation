@@ -6,7 +6,7 @@ import java.util.Date;
 
 public interface ICrudHotel {
    void addHotelForRegularCustomer(String hotelName, Integer WeekDaysRates, Integer WeekendRates, Integer Ratings, CustomerType customerType);
-   Integer cheapestHotelDateWise(String date1,String date2);
-   String cheapestRateAndHighestRated(String Date1,String Date2);
+   Integer cheapestHotelDateWise(String date1,String date2,CustomerType customerType);
+   String cheapestRateAndHighestRated(String Date1,String Date2,CustomerType customerType);
    void viewHotelRatesForRegularCustomers();
 }

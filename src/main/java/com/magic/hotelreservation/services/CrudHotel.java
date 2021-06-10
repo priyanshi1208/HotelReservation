@@ -38,30 +38,31 @@ public class CrudHotel implements ICrudHotel {
 
     }
     @Override
-    public Integer cheapestHotelDateWise(String Date1, String Date2) {
+    public Integer cheapestHotelDateWise(String Date1, String Date2,CustomerType customerType) {
         LocalDate startDate = DateFormatChecker(Date1);
         LocalDate endDate = DateFormatChecker(Date2);
         hotelList.forEach(hotel -> {
             AtomicReference<Integer> rate = new AtomicReference<>(0);
             AtomicReference<Integer> finalRate = new AtomicReference<>(0);
-
+            if(hotel.getCustomerType().equals(customerType)) {
                 Stream.iterate(startDate, localDate ->
                         localDate.plusDays(1)).limit(DAYS.between(startDate, endDate) + 1).forEach(day -> {
                     if (day.getDayOfWeek().equals(DayOfWeek.SUNDAY) || day.getDayOfWeek().equals(DayOfWeek.SATURDAY))
                         rate.set(hotel.getWeekendRates());
-                    else{
-                    rate.set(hotel.getWeekdaysRates());}
+                    else {
+                        rate.set(hotel.getWeekdaysRates());
+                    }
                     finalRate.set(finalRate.get() + rate.get());
                     Rates rates = checkRatings(Integer.parseInt(String.valueOf(finalRate)), hotel.getRatings());
-                    rateList.put(hotel.getHotelName(),rates);
+                    rateList.put(hotel.getHotelName(), rates);
                 });
-
+            }
         });
         return rateList.values().stream().sorted(Comparator.comparing(Rates::getFinalRate)).collect(Collectors.toList()).get(0).getFinalRate();
     }
     @Override
-    public String cheapestRateAndHighestRated(String Date1,String Date2){
-        Integer cheapestRate=cheapestHotelDateWise(Date1,Date2);
+    public String cheapestRateAndHighestRated(String Date1,String Date2,CustomerType customerType){
+        Integer cheapestRate=cheapestHotelDateWise(Date1,Date2,customerType);
         AtomicReference<Integer> ratings = new AtomicReference<>(rateList.values().stream().sorted(Comparator.comparing(Rates::getFinalRate)).collect(Collectors.toList()).get(0).getRatings());
         AtomicReference<String> hotelname=new AtomicReference<>(null);
         rateList.forEach((key, value) -> {
